@@ -1,9 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
+## the function makeCacheMatrix creates a cache of an inputed matrix
+## the function cachesolve computes the the cached matrix
 
-## Write a short comment describing this function
 
-makeCasheMatrix <- function(x = numeric()) {
+makeCacheMatrix <- function(x = numeric()) {
   m <- NULL
   set <- function(y) {
     x <<- y
@@ -17,8 +16,6 @@ makeCasheMatrix <- function(x = numeric()) {
        getsolve = getsolve)
 }
 
-
-## Write a short comment describing this function
 
 cachesolve <- function(x, ...) {
   m <- x$getsolve()

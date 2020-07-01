@@ -1,6 +1,5 @@
-## the function makeCacheMatrix creates a cache of an inputed matrix
-## the function cachesolve computes the the cached matrix
-
+## the function makeCacheMatrix creates a special object that
+## stores a numeric vector and cache's it's inverse
 
 makeCacheMatrix <- function(x = numeric()) {
   m <- NULL
@@ -9,22 +8,24 @@ makeCacheMatrix <- function(x = numeric()) {
     m <<- NULL
   }
   get <- function() x
-  setsolve <- function(solve) m <<- solve
-  getsolve <- function() m
+  setinv <- function(inv) m <<- inv
+  getinv <- function() m
   list(set = set, get = get,
-       setsolve = setsolve,
-       getsolve = getsolve)
+       setinv = setinv,
+       getinv = getinv)
 }
-
+## the function cachesolve returns the inverse of the cache created with
+## the makeCacheMatrix function and sets the value of the inverse in the 
+## cache if not already set.
 
 cachesolve <- function(x, ...) {
-  m <- x$getsolve()
+  m <- x$getinv()
   if(!is.null(m)) {
     message("getting cached data")
     return(m)
   }
   data <- x$get()
   m <- solve(data, ...)
-  x$setsolve(m)
+  x$setinv(m)
   m
 }
